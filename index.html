@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
-  <title>Document</title>
+  <title>Tassen - Hunddagis & Pensionat</title>
 </head>
 
 <body>
@@ -14,28 +14,55 @@
     <nav>
       <a href="#top">Hem</a>
       <a href="#om">Om Oss</a>
-      <a href="#tjanster">Tjanster</a>
+      <a href="#tjanster">Tjänster</a>
       <a href="#kontakt">Kontakta Oss</a>
     </nav>
   </header>
   <main>
-    <section>
+    <section class="hem">
       <h1>
-        Ett tryggt andra hem för din hund
+        Ett tryggt andra<br>hem för din hund
       </h1>
       <p>
-        På Tassen får din hund motion, lek och omtanke medan du jobbar eller är på resande fot.
+        På Tassen får din hund motion, lek och omtanke<br>medan du jobbar eller är på resande fot.
       </p>
       <p>
-        Vi är ett litet hunddagis och pensionat strax utanför stan.
-        Med två engagerade hundskötare, plats för tolv hundar och ett stort
-        inhägnat uteområde skapar vi en trygg och personlig miljö för varje hund.
+        Vi är ett litet hunddagis och pensionat strax utanför<br>stan.
+        Med två engagerade hundskötare, plats för tolv<br>hundar och ett stort
+        inhägnat uteområde skapar vi en<br>trygg och personlig miljö för varje hund.
       </p>
+    </section>
+    <section class="tjanster" id="tjanster">
+      <div class="intro">
+        <h2>Våra tjänster</h2>
+        <p>Välj det som passar dig och din hund</p>
+      </div>
+      <div class="container">
+        <article class="tjanst">
+          <h3>Hunddagis - heldag</h3>
+          <p>En hel dag med lek, motion, vila och omsorg tillsammans med våra andra hundgäster.</p>
+          <p>Pris: 320 kr</p>
+        </article>
+        <article class="tjanst">
+          <h3>Hunddagis - halvdag</h3>
+          <p>Ett bra alternativ för hundar som behöver tillsyn och aktivering under en del av dagen.</p>
+          <p>Pris: 190 kr</p>
+        </article>
+        <article class="tjanst">
+          <h3>Hundpensionat</h3>
+          <p>Trygg övernattning med omsorg, rastning och sällskap när du behöver vara bortrest.</p>
+          <p>Pris: 450 kr/natt</p>
+        </article>
+        <article class="tjanst">
+          <h3>Hämtning och lämning</h3>
+          <p>Vi kan hämta eller lämna din hund när det passar bättre än att du kör själv.</p>
+          <p>Pris: 150 kr</p>
+        </article>
+      </div>
     </section>
     <section id="oppetider">
       <h2>Öppettider</h2>
       <p>Planera ditt besök hos oss</p>
-
 
       <h3>Har vi öppet just nu?</h3>
       <p>Tid: [JavaScript fyller i tiden]</p>
@@ -49,53 +76,22 @@
         <li>Söndag: Stängt</li>
       </ul>
     </section>
-    <section id="tjanster">
-      <h2>Våra tjänster</h2>
-      <p>Välj det som passar dig och din hund</p>
-      <article>
-        <h3>Hunddagis - heldag</h3>
-        <p>En hel dag med lek, motion, vila och omsorg tillsammans med våra andra hundgäster.</p>
-        <p>Pris: 320 kr</p>
-      </article>
-      <article>
-        <h3>Hunddagis - halvdag</h3>
-        <p>Ett bra alternativ för hundar som behöver tillsyn och aktivering under en del av dagen.</p>
-        <p>Pris: 190 kr</p>
-      </article>
-      <article>
-        <h3>Hundpensionat</h3>
-        <p>Trygg övernattning med omsorg, rastning och sällskap när du behöver vara bortrest.</p>
-        <p>Pris: 450 kr/natt</p>
-      </article>
-      <article>
-        <h3>Klippkort</h3>
-        <p>För dig som använder hunddagiset regelbundet. Klippkortet gäller för tio dagar.</p>
-        <p> Pris: 2 800 kr</p>
-      </article>
-      <article>
-        <h3> Hämtning och lämning
-          <p>Vi kan hämta eller lämna din hund när det passar bättre än att du kör själv.</p>
-          <p>Pris: 150 kr</p>
-      </article>
-    </section>
     <section id="boka">
-      <h2> Skicka en bokningsförfrågan
-        <p> Berätta när din hund behöver vara hos oss.
-        <p> Fyll i hundens namn och önskat datum så återkommer vi till dig via telefon.
-        <form>
-          <label> Hundens namn
+      <h2>Skicka en bokningsförfrågan</h2>
+      <p>Berätta när din hund behöver vara hos oss.</p>
+      <p>Fyll i hundens namn och önskat datum så återkommer vi till dig via telefon.</p>
+      <form>
+        <label for="hundnamn">Hundens namn</label>
+        <input type="text" id="hundnamn">
 
-            <input>
+        <label for="datum">Önskat datum</label>
+        <input type="date" id="datum">
 
-            <label> Önskat datum</label>
-
-            <input type="date">
-
-            <button> Skicka bokningsförfrågan</button>
-            <p> Din förfrågan sparas i din webbläsare. Vi kontaktar dig via telefon för att bekräfta bokningen.
-        </form>
-        <h3>Mina bokningsförfrågningar</h3>
-        <ul>(JavaScript skapar bokningarna här) om listan är tom = Du har inga bokningsförfrågningar ännu.</ul>
+        <button type="submit">Skicka bokningsförfrågan</button>
+        <p>Din förfrågan sparas i din webbläsare. Vi kontaktar dig via telefon för att bekräfta bokningen.</p>
+      </form>
+      <h3>Mina bokningsförfrågningar</h3>
+      <ul id="bokningar"></ul>
     </section>
     <section id="om">
       <h2>Om Tassen</h2>
@@ -113,36 +109,38 @@
         <p>Hundskötare</p>
         <p>Nina tar hand om hundarna under dagarna och ser till att alla får en trygg, aktiv och rolig vistelse.</p>
       </article>
-      <aritcle>
+      <article>
         <h3>Pelle</h3>
-        <p>Hundskötare & ägare</p>
+        <p>Hundskötare &amp; ägare</p>
         <p>Pelle driver Tassen och arbetar dagligen med hundarna. Han ansvarar också för att verksamheten fungerar som
           den ska.</p>
+      </article>
     </section>
     <section id="omdomen">
-      <h2> Vad våra kunder säger
-        <p> Några ord från hundägare som har valt Tassen.
+      <h2>Vad våra kunder säger</h2>
+      <p>Några ord från hundägare som har valt Tassen.</p>
     </section>
     <section id="kontakt">
       <h2>Kontakta oss</h2>
-      <p> Har du frågor? Hör gärna av dig.</p>
-      <adress>
-        Hagvägen 4
-        0300-12 34 56
+      <p>Har du frågor? Hör gärna av dig.</p>
+      <address>
+        Hagvägen 4<br>
+        0300-12 34 56<br>
         hej@tassen.se
-        <p> Ring eller skicka ett mejl om du vill veta mer om våra tjänster eller diskutera vad som passar bäst för din
-          hund.</p>
-      </adress>
+      </address>
+      <p>Ring eller skicka ett mejl om du vill veta mer om våra tjänster eller diskutera vad som passar bäst för din
+        hund.</p>
+    </section>
   </main>
 
   <footer>
-    <h2> Tassen - Hunddagis & Pensionat
-      <address>
-        Hagvägen 4
-        0300-12 34 56
-        hej@tassen.se
-      </address>
-      <p> Trygg omsorg för din hund - varje dag.
+    <h2>Tassen - Hunddagis &amp; Pensionat</h2>
+    <address>
+      Hagvägen 4<br>
+      0300-12 34 56<br>
+      hej@tassen.se
+    </address>
+    <p>Trygg omsorg för din hund - varje dag.</p>
   </footer>
 </body>
 
