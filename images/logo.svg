@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 100" role="img" aria-label="Tassen logotyp">
+  <g fill="#000000">
+    <ellipse cx="21" cy="44" rx="8" ry="11" transform="rotate(-22 21 44)"/>
+    <ellipse cx="39" cy="24" rx="8.5" ry="12" transform="rotate(-8 39 24)"/>
+    <ellipse cx="61" cy="24" rx="8.5" ry="12" transform="rotate(8 61 24)"/>
+    <ellipse cx="79" cy="44" rx="8" ry="11" transform="rotate(22 79 44)"/>
+    <path d="M50 48 C36 48 21 65 24 78 C26 88 38 88 50 84 C62 88 74 88 76 78 C79 65 64 48 50 48 Z"/>
+    <text x="105" y="67" font-family="Poppins, Arial, Helvetica, sans-serif" font-size="46" font-weight="700">Tassen</text>
+  </g>
+</svg>
