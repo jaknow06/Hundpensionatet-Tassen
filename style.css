@@ -65,7 +65,7 @@ nav a {
     left: 0;
     width: 0;
     height: 2px;
-    bottom: -0.5rem;
+    bottom: -0.3rem;
     background: black;
     transition: width 0.3s ease-in-out;
 }
@@ -75,16 +75,31 @@ nav a {
 }
 
 .boka {
-  background-color: black;
-  border: none;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 1rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1.2rem;
-  cursor: pointer;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.kontakt-knapp {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 1rem 4rem;
+    border-radius: 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 1.5rem auto 0;
+
 }
 
 h1 {
