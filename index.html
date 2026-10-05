@@ -9,7 +9,7 @@
   <title>Tassen - Hunddagis & Pensionat</title>
 </head>
 
-<body>
+<body onload="startTime()">
   <header>
     <nav>
       <a href="#top" class="logo">
@@ -42,42 +42,15 @@
         <h2>Våra tjänster</h2>
         <p>Välj det som passar dig och din hund</p>
       </div>
-      <div class="container">
-        <article class="tjanst">
-          <img src="images/hunddagis1.jpeg" alt="Hundar som leker på hunddagis">
-          <h3>Hunddagis - heldag</h3>
-          <p>En hel dag med lek, motion, vila och omsorg tillsammans med våra andra hundgäster.</p>
-          <p>Pris: 320 kr</p>
-        </article>
-        <article class="tjanst">
-          <img src="images/hunddagis2.jpeg" alt="Hundar som leker på hunddagis">
-          <h3>Hunddagis - halvdag</h3>
-          <p>Ett bra alternativ för hundar som behöver tillsyn och aktivering under en del av dagen.</p>
-          <p>Pris: 190 kr</p>
-        </article>
-        <article class="tjanst">
-          <img src="images/hundpensionat.jpeg" alt="Hundar som sitter i hunddagis">
-          <h3>Hundpensionat</h3>
-          <p>Trygg övernattning med omsorg, rastning och sällskap när du behöver vara bortrest.</p>
-          <p>Pris: 450 kr/natt</p>
-        </article>
-        <article class="tjanst">
-          <img src="images/hol.jpeg" alt="Hundar som blir avlämnad på hunddagis">
-          <h3>Hämtning och lämning</h3>
-          <p>Har du en hektisk morgon eller ligger vi inte på din väg? Vi hämtar och lämnar din hund åt dig.</p>
-          <p>Pris: 150 kr</p>
-        </article>
-      </div>
+      <div class="container"></div>
     </section>
     <section id="oppetider">
       <h2>Öppettider</h2>
       <p>Planera ditt besök hos oss</p>
-
       <h3>Har vi öppet just nu?</h3>
-      <p>Tid: [JavaScript fyller i tiden]</p>
-      <p>Datum: [JavaScript fyller i datumet]</p>
-      <p>Status: [JavaScript fyller i Öppet just nu / Stängt just nu]</p>
-
+      <p id="liveTime"></p>
+      <p id="liveDate"></p>
+      <p id="openStatus"></p>
       <h3>Veckans öppettider</h3>
       <ul>
         <li>Måndag - fredag: 07:00-18:00</li>
@@ -92,10 +65,8 @@
       <form>
         <label for="hundnamn">Hundens namn</label>
         <input type="text" id="hundnamn">
-
         <label for="datum">Önskat datum</label>
         <input type="date" id="datum">
-
         <button type="submit">Skicka bokningsförfrågan</button>
         <p>Din förfrågan sparas i din webbläsare. Vi kontaktar dig via telefon för att bekräfta bokningen.</p>
       </form>
@@ -111,7 +82,7 @@
       <p>Vårt stora inhägnade utomhusområde ger hundarna gott om plats att leka och röra på sig. Under dagen varvar vi
         aktivitet med vila så att hundarna får en lugn och trivsam vistelse.</p>
     </section>
-    <section>
+    <section id="anstallda">
       <h2>Möt oss</h2>
       <article>
         <h3>Nina</h3>
@@ -120,7 +91,7 @@
       </article>
       <article>
         <h3>Pelle</h3>
-        <p>Hundskötare &amp; ägare</p>
+        <p>Hundskötare & ägare</p>
         <p>Pelle driver Tassen och arbetar dagligen med hundarna. Han ansvarar också för att verksamheten fungerar som
           den ska.</p>
       </article>
@@ -143,7 +114,7 @@
   </main>
 
   <footer>
-    <h2>Tassen - Hunddagis &amp; Pensionat</h2>
+    <h2>Tassen - Hunddagis & Pensionat</h2>
     <address>
       Hagvägen 4<br>
       0300-12 34 56<br>
