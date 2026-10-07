@@ -110,3 +110,137 @@ function update() {
 
 update();         
 setInterval(update, 1000);
+
+
+// Booking requests (saved in the visitor's own browser)
+
+const STORAGE_KEY = "tassen-bokningar";
+
+const bokningsform = document.getElementById("bokningsform");
+const hundnamnInput = document.getElementById("hundnamn");
+const datumInput = document.getElementById("datum");
+const formfel = document.getElementById("formfel");
+const bokningslista = document.getElementById("bokningar");
+
+// The array is the source of truth. The DOM is only drawn from it.
+let bokningar = laddaBokningar();
+
+function laddaBokningar() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const data = JSON.parse(raw);
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    // Blocked storage or broken data: start with an empty list
+    return [];
+  }
+}
+
+function sparaBokningar() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(bokningar));
+  } catch (e) {
+    visaFel("Din webbläsare tillät inte att förfrågan sparas, så den försvinner när du lämnar sidan.");
+  }
+}
+
+function visaFel(text, falt) {
+  formfel.textContent = text;
+  hundnamnInput.removeAttribute("aria-invalid");
+  datumInput.removeAttribute("aria-invalid");
+  if (falt) {
+    falt.setAttribute("aria-invalid", "true");
+    falt.focus();
+  }
+}
+
+function rensaFel() {
+  visaFel("");
+}
+
+function idagSomText() {
+  const d = new Date();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return d.getFullYear() + "-" + mm + "-" + dd;
+}
+
+function formateraDatum(datum) {
+  const d = new Date(datum + "T00:00:00");
+  return d.toLocaleDateString("sv-SE", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+}
+
+function ritaBokningar() {
+  bokningslista.innerHTML = "";
+
+  if (bokningar.length === 0) {
+    const tom = document.createElement("li");
+    tom.className = "tom";
+    tom.textContent = "Du har inga bokningsförfrågningar än.";
+    bokningslista.appendChild(tom);
+    return;
+  }
+
+  bokningar.forEach(b => {
+    const li = document.createElement("li");
+    li.className = "bokning";
+
+    const text = document.createElement("span");
+    // textContent, so what the visitor types is never treated as HTML
+    text.textContent = b.hundnamn + " – " + formateraDatum(b.datum);
+
+    const knapp = document.createElement("button");
+    knapp.type = "button";
+    knapp.textContent = "Avboka";
+    knapp.setAttribute("aria-label", "Avboka " + b.hundnamn + " " + b.datum);
+    knapp.addEventListener("click", () => taBortBokning(b.id));
+
+    li.append(text, knapp);
+    bokningslista.appendChild(li);
+  });
+}
+
+function laggTillBokning(hundnamn, datum) {
+  bokningar.push({ id: Date.now(), hundnamn: hundnamn, datum: datum });
+  sparaBokningar();
+  ritaBokningar();
+}
+
+function taBortBokning(id) {
+  bokningar = bokningar.filter(b => b.id !== id);
+  sparaBokningar();
+  ritaBokningar();
+}
+
+datumInput.min = idagSomText();
+
+bokningsform.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const hundnamn = hundnamnInput.value.trim();
+  const datum = datumInput.value;
+
+  if (hundnamn === "") {
+    visaFel("Fyll i hundens namn.", hundnamnInput);
+    return;
+  }
+  if (datum === "") {
+    visaFel("Välj önskat datum.", datumInput);
+    return;
+  }
+  if (datum < idagSomText()) {
+    visaFel("Datumet har redan passerat. Välj ett datum från och med idag.", datumInput);
+    return;
+  }
+
+  rensaFel();
+  laggTillBokning(hundnamn, datum);
+  bokningsform.reset();
+  hundnamnInput.focus();
+});
+
+hundnamnInput.addEventListener("input", rensaFel);
+datumInput.addEventListener("input", rensaFel);
+
+ritaBokningar();

@@ -19,7 +19,7 @@
       <a class="underline" href="#om">Om Oss</a>
       <a class="underline" href="#tjanster">Tjänster</a>
       <a class="underline" href="#kontakt">Kontakt</a>
-      <a class="boka" href="#kontakt">Boka Här</a>
+      <a class="boka" href="#boka">Boka Här</a>
     </nav>
   </header>
   <main>
@@ -62,20 +62,21 @@
       <h2>Skicka en bokningsförfrågan</h2>
       <p>Berätta när din hund behöver vara hos oss.</p>
       <p>Fyll i hundens namn och önskat datum så återkommer vi till dig via telefon.</p>
-      <form>
+      <form id="bokningsform" novalidate>
         <label for="hundnamn">Hundens namn</label>
-        <input type="text" id="hundnamn">
+        <input type="text" id="hundnamn" name="hundnamn" autocomplete="off" aria-describedby="formfel">
         <label for="datum">Önskat datum</label>
-        <input type="date" id="datum">
+        <input type="date" id="datum" name="datum" aria-describedby="formfel">
+        <p id="formfel" class="fel" role="alert"></p>
         <button type="submit">Skicka bokningsförfrågan</button>
         <p>Din förfrågan sparas i din webbläsare. Vi kontaktar dig via telefon för att bekräfta bokningen.</p>
       </form>
       <h3>Mina bokningsförfrågningar</h3>
       <ul id="bokningar"></ul>
     </section>
-    <section id="om">
+    <section id="om" class="om-sektion">
       <h2>Om Tassen</h2>
-      <p>Ett litet pensionat med mycket omtanke</p>
+      <p class="undertitel">Ett litet pensionat med mycket omtanke</p>
       <p>Tassen är ett familjärt hunddagis och pensionat för dig som vill att din hund ska få en trygg och aktiv vardag.
       </p>
       <p>Vi tar emot högst tolv hundar åt gången, vilket gör att vi kan ge varje hund den uppmärksamhet den behöver.</p>
@@ -84,19 +85,23 @@
     </section>
     <section id="anstallda">
       <h2>Möt oss</h2>
-      <article>
-        <h3>Nina</h3>
-        <p>Hundskötare</p>
-        <p>Nina tar hand om hundarna under dagarna och ser till att alla får en trygg, aktiv och rolig vistelse.</p>
-      </article>
-      <article>
-        <h3>Pelle</h3>
-        <p>Hundskötare & ägare</p>
-        <p>Pelle driver Tassen och arbetar dagligen med hundarna. Han ansvarar också för att verksamheten fungerar som
-          den ska.</p>
-      </article>
+      <div class="personal">
+        <article class="kort">
+          <img class="avatar" src="images/nina.jpeg" alt="Nina, hundskötare och ägare">
+          <h3>Nina</h3>
+          <p class="roll">Hundskötare</p>
+          <p>Nina tar hand om hundarna under dagarna och ser till att alla får en trygg, aktiv och rolig vistelse.</p>
+        </article>
+        <article class="kort">
+          <img class="avatar" src="images/pelle.jpeg" alt="Pelle, hundskötare och ägare">
+          <h3>Pelle</h3>
+          <p class="roll">Hundskötare & ägare</p>
+          <p>Pelle driver Tassen och arbetar dagligen med hundarna. Han ansvarar också för att verksamheten fungerar som
+            den ska.</p>
+        </article>
+      </div>
     </section>
-    <section id="omdomen">
+    <section id="omdomen" class="om-sektion">
       <h2>Vad våra kunder säger</h2>
       <p>Några ord från hundägare som har valt Tassen.</p>
     </section>
@@ -105,8 +110,8 @@
       <p>Har du frågor? Hör gärna av dig.</p>
       <address>
         Hagvägen 4<br>
-        0300-12 34 56<br>
-        hej@tassen.se
+        <a href="tel:0300123456">0300-12 34 56</a><br>
+        <a href="mailto:hej@tassen.se">hej@tassen.se</a>
       </address>
       <p>Ring eller skicka ett mejl om du vill veta mer om våra tjänster eller diskutera vad som passar bäst för din
         hund.</p>
@@ -114,13 +119,33 @@
   </main>
 
   <footer>
-    <h2>Tassen - Hunddagis & Pensionat</h2>
-    <address>
-      Hagvägen 4<br>
-      0300-12 34 56<br>
-      hej@tassen.se
-    </address>
-    <p>Trygg omsorg för din hund - varje dag.</p>
+    <div class="footer-topp">
+      <div class="footer-om">
+        <img class="footer-logo" src="images/logo.svg" alt="Tassen">
+        <p>Trygg omsorg för din hund - varje dag.</p>
+      </div>
+      <div class="footer-kolumn">
+        <h3>Meny</h3>
+        <ul>
+          <li><a href="#top">Hem</a></li>
+          <li><a href="#om">Om oss</a></li>
+          <li><a href="#tjanster">Tjänster</a></li>
+          <li><a href="#boka">Boka</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-kolumn">
+        <h3>Kontakt</h3>
+        <address>
+          Hagvägen 4<br>
+          <a href="tel:0300123456">0300-12 34 56</a><br>
+          <a href="mailto:hej@tassen.se">hej@tassen.se</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer-botten">
+      <p>Copyright © 2026 Tassen - Hunddagis & Pensionat</p>
+    </div>
   </footer>
 </body>
 
