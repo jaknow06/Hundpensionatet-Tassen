@@ -244,3 +244,46 @@ hundnamnInput.addEventListener("input", rensaFel);
 datumInput.addEventListener("input", rensaFel);
 
 ritaBokningar();
+const omdomen = [
+  { text: "Jättemysigt hunddagis med supertrevlig och omtänksam personal! Vår hund trivs så bra och vi känner oss alltid trygga med att lämna henne här 🐶❤️", namn: "Rebecka", betyg: 5 },
+  { text: "Trevligt dagis! Min hund viftar alltid på svansen när vi går in varje morgon!😊", namn: "Lisa", betyg: 5 },
+  { text: "Vi har lämnat vår hund Loke vid ett flertal tillfällen. Personalen är alltid serviceminded, glada och engagerade. Loke är alltid ivrig när han kommer dit och stortrivs på plats. Vi kan ge de varmaste rekommendationerna.", namn: "Emma", betyg: 5 },
+  { text: "This place is excellent. Every time we travel, we leave our dog here and he is thrilled to come. Great staff, great surroundings.", namn: "Anders", betyg: 5 },
+  { text: "Finns inget bättre ställe om man behöver pensionat för sin hund!! Enastående!", namn: "Tomas", betyg: 5 }
+];
+
+const omdomeRuta = document.getElementById("omdome");
+const omdomeKnapp = document.getElementById("nyttOmdome");
+
+let senasteOmdome = -1;
+
+function slumpaOmdome() {
+  let index;
+  do {
+    index = Math.floor(Math.random() * omdomen.length);
+  } while (index === senasteOmdome && omdomen.length > 1);
+  return index;
+}
+
+function visaOmdome() {
+  senasteOmdome = slumpaOmdome();
+  const o = omdomen[senasteOmdome];
+
+  const stjarnor = document.createElement("div");
+  stjarnor.className = "stjarnor";
+  stjarnor.setAttribute("role", "img");
+  stjarnor.setAttribute("aria-label", "Betyg: " + o.betyg + " av 5");
+  stjarnor.textContent = "★".repeat(o.betyg) + "☆".repeat(5 - o.betyg);
+
+  const text = document.createElement("p");
+  text.textContent = "”" + o.text + "”";
+
+  const namn = document.createElement("footer");
+  namn.textContent = "– " + o.namn;
+
+  omdomeRuta.replaceChildren(stjarnor, text, namn);
+}
+
+omdomeKnapp.addEventListener("click", visaOmdome);
+
+visaOmdome();
