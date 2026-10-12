@@ -59,18 +59,8 @@ container.innerHTML = tjanster.map(t => `
   </article>
 `).join("");
 
-function startTime() {
-  const today = new Date();
-  let h = checkTime(today.getHours());
-  let m = checkTime(today.getMinutes());
-  let s = checkTime(today.getSeconds());
-  document.getElementById('liveTime').innerHTML = h + ":" + m + ":" + s;
-  setTimeout(startTime, 1000);
-}
-
-function checkTime(i) {
-  if (i < 10) { i = "0" + i };
-  return i;
+function tvaSiffror(tal) {
+  return String(tal).padStart(2, "0");
 }
 
 const hours = {
@@ -83,23 +73,35 @@ const hours = {
   6: [9, 14]
 };
 
-function update() {
+function arOppet(d) {
+  const today = hours[d.getDay()];
+  const hour = d.getHours();
+  return today !== null && hour >= today[0] && hour < today[1];
+}
+
+function uppdateraOppetstatus() {
   const d = new Date();
+
+  document.getElementById('liveTime').textContent =
+    tvaSiffror(d.getHours()) + ":" + tvaSiffror(d.getMinutes()) + ":" + tvaSiffror(d.getSeconds());
 
   document.getElementById('liveDate').textContent =
     d.toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' });
 
-  const today = hours[d.getDay()];
-  const hour = d.getHours();
-  const open = today !== null && hour >= today[0] && hour < today[1];
+  const open = arOppet(d);
+  const text = open ? 'Öppet just nu' : 'Stängt just nu';
+  const klass = open ? 'open' : 'closed';
 
-  const status = document.getElementById('openStatus');
-  status.textContent = open ? 'Öppet just nu' : 'Stängt just nu';
-  status.className = open ? 'open' : 'closed';
+  // Samma status visas i hero-sektionen och i öppettidssektionen
+  ['openStatus', 'heroStatus'].forEach(id => {
+    const el = document.getElementById(id);
+    el.textContent = text;
+    el.className = klass;
+  });
 }
 
-update();
-setInterval(update, 1000);
+uppdateraOppetstatus();
+setInterval(uppdateraOppetstatus, 1000);
 
 const STORAGE_KEY = "tassen-bokningar";
 
