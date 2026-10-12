@@ -1,21 +1,17 @@
-// Hide navbar on scroll down and show on scroll up
-
 let prevScrollpos = window.pageYOffset;
 const navbar = document.querySelector("nav");
 
 window.onscroll = function () {
-    let currentScrollPos = window.pageYOffset;
+  let currentScrollPos = window.pageYOffset;
 
-    if (prevScrollpos > currentScrollPos) {
-        navbar.style.top = "0";
-    } else {
-        navbar.style.top = "-6rem";
-    }
+  if (prevScrollpos > currentScrollPos) {
+    navbar.style.top = "0";
+  } else {
+    navbar.style.top = "-6rem";
+  }
 
-    prevScrollpos = currentScrollPos;
+  prevScrollpos = currentScrollPos;
 };
-
-// Display services and prices on the page
 
 const tjanster = [
   {
@@ -63,23 +59,17 @@ container.innerHTML = tjanster.map(t => `
   </article>
 `).join("");
 
-
-// Live timer, date and open/closed status
-
 function startTime() {
   const today = new Date();
-  let h = today.getHours();
-  let m = today.getMinutes();
-  let s = today.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('liveTime').innerHTML =  h + ":" + m + ":" + s;
+  let h = checkTime(today.getHours());
+  let m = checkTime(today.getMinutes());
+  let s = checkTime(today.getSeconds());
+  document.getElementById('liveTime').innerHTML = h + ":" + m + ":" + s;
   setTimeout(startTime, 1000);
-
 }
 
 function checkTime(i) {
-  if (i < 10) {i = "0" + i};
+  if (i < 10) { i = "0" + i };
   return i;
 }
 
@@ -108,7 +98,7 @@ function update() {
   status.className = open ? 'open' : 'closed';
 }
 
-update();         
+update();
 setInterval(update, 1000);
 
 
@@ -122,7 +112,6 @@ const datumInput = document.getElementById("datum");
 const formfel = document.getElementById("formfel");
 const bokningslista = document.getElementById("bokningar");
 
-// The array is the source of truth. The DOM is only drawn from it.
 let bokningar = laddaBokningar();
 
 function laddaBokningar() {
@@ -132,7 +121,6 @@ function laddaBokningar() {
     const data = JSON.parse(raw);
     return Array.isArray(data) ? data : [];
   } catch (e) {
-    // Blocked storage or broken data: start with an empty list
     return [];
   }
 }
@@ -187,7 +175,6 @@ function ritaBokningar() {
     li.className = "bokning";
 
     const text = document.createElement("span");
-    // textContent, so what the visitor types is never treated as HTML
     text.textContent = b.hundnamn + " – " + formateraDatum(b.datum);
 
     const knapp = document.createElement("button");
