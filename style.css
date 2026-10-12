@@ -647,8 +647,6 @@ form button,
     outline-offset: 2px;
 }
 
-/* Responsivitet */
-
 @media (max-width: 900px) {
     .hem {
         min-height: 36rem;
