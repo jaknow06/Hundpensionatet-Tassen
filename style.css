@@ -691,12 +691,10 @@ form button,
         white-space: nowrap;
     }
 
-    /* Logotypen länkar redan till startsidan */
     nav a.underline[href="#top"] {
         display: none;
     }
 
-    /* Större träffyta på länkarna utan att menyn blir högre */
     nav a.underline {
         display: flex;
         align-items: center;
