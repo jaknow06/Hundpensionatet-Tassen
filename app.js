@@ -92,7 +92,6 @@ function uppdateraOppetstatus() {
   const text = open ? 'Öppet just nu' : 'Stängt just nu';
   const klass = open ? 'open' : 'closed';
 
-  // Samma status visas i hero-sektionen och i öppettidssektionen
   ['openStatus', 'heroStatus'].forEach(id => {
     const el = document.getElementById(id);
     el.textContent = text;
