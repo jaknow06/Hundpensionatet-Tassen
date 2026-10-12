@@ -36,7 +36,7 @@ const tjanster = [
     pris: 450,
     enhet: "kr/natt",
     bild: "images/hundpensionat.jpeg",
-    alt: "Hundar som sitter i hunddagis"
+    alt: "Hund som vilar på hundpensionatet"
   },
   {
     namn: "Hämtning och lämning",
@@ -101,9 +101,6 @@ function update() {
 update();
 setInterval(update, 1000);
 
-
-// Booking requests (saved in the visitor's own browser)
-
 const STORAGE_KEY = "tassen-bokningar";
 
 const bokningsform = document.getElementById("bokningsform");
@@ -112,23 +109,47 @@ const datumInput = document.getElementById("datum");
 const formfel = document.getElementById("formfel");
 const bokningslista = document.getElementById("bokningar");
 
-let bokningar = laddaBokningar();
+class Bokningslista {
+  constructor(nyckel) {
+    this.nyckel = nyckel;
+    this.bokningar = this.ladda();
+  }
 
-function laddaBokningar() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const data = JSON.parse(raw);
-    return Array.isArray(data) ? data : [];
-  } catch (e) {
-    return [];
+  ladda() {
+    try {
+      const raw = localStorage.getItem(this.nyckel);
+      if (!raw) return [];
+      const data = JSON.parse(raw);
+      return Array.isArray(data) ? data : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  spara() {
+    try {
+      localStorage.setItem(this.nyckel, JSON.stringify(this.bokningar));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  laggTill(hundnamn, datum) {
+    this.bokningar.push({ id: Date.now(), hundnamn: hundnamn, datum: datum });
+    return this.spara();
+  }
+
+  taBort(id) {
+    this.bokningar = this.bokningar.filter(b => b.id !== id);
+    return this.spara();
   }
 }
 
-function sparaBokningar() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(bokningar));
-  } catch (e) {
+const lista = new Bokningslista(STORAGE_KEY);
+
+function visaSparfel(sparades) {
+  if (!sparades) {
     visaFel("Din webbläsare tillät inte att förfrågan sparas, så den försvinner när du lämnar sidan.");
   }
 }
@@ -162,7 +183,7 @@ function formateraDatum(datum) {
 function ritaBokningar() {
   bokningslista.innerHTML = "";
 
-  if (bokningar.length === 0) {
+  if (lista.bokningar.length === 0) {
     const tom = document.createElement("li");
     tom.className = "tom";
     tom.textContent = "Du har inga bokningsförfrågningar än.";
@@ -170,7 +191,7 @@ function ritaBokningar() {
     return;
   }
 
-  bokningar.forEach(b => {
+  lista.bokningar.forEach(b => {
     const li = document.createElement("li");
     li.className = "bokning";
 
@@ -189,15 +210,15 @@ function ritaBokningar() {
 }
 
 function laggTillBokning(hundnamn, datum) {
-  bokningar.push({ id: Date.now(), hundnamn: hundnamn, datum: datum });
-  sparaBokningar();
+  const sparades = lista.laggTill(hundnamn, datum);
   ritaBokningar();
+  visaSparfel(sparades);
 }
 
 function taBortBokning(id) {
-  bokningar = bokningar.filter(b => b.id !== id);
-  sparaBokningar();
+  const sparades = lista.taBort(id);
   ritaBokningar();
+  visaSparfel(sparades);
 }
 
 datumInput.min = idagSomText();

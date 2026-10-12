@@ -24,7 +24,6 @@ main {
 }
 
 :root {
-    /* Menyn är 6rem hög, 1rem extra ger lite luft ovanför rubriken */
     --meny-avstand: 7rem;
 }
 
@@ -375,8 +374,6 @@ input[aria-invalid="true"] {
     margin-bottom: 1rem;
 }
 
-/* Öppettider */
-
 #oppetider {
     max-width: 32rem;
     margin: 0 auto 4rem;
@@ -434,8 +431,6 @@ input[aria-invalid="true"] {
     background-color: #b00020;
 }
 
-/* Bokning */
-
 #boka {
     max-width: 36rem;
     margin: 0 auto 4rem;
@@ -454,8 +449,6 @@ input[aria-invalid="true"] {
 #bokningar .bokning {
     max-width: none;
 }
-
-/* Kontakt */
 
 #kontakt {
     max-width: 48rem;
@@ -485,8 +478,6 @@ input[aria-invalid="true"] {
 #kontakt p:last-child {
     margin-bottom: 0;
 }
-
-/* Omdömen */
 
 .omdome {
     max-width: 32rem;
@@ -532,8 +523,6 @@ input[aria-invalid="true"] {
     background-color: #2c3621;
 }
 
-/* Knappar och sidfot */
-
 .boka:hover {
     background-color: #2c3621;
 }
@@ -569,7 +558,9 @@ footer {
     margin-bottom: 1rem;
 }
 
-.footer-kolumn h3 {
+.footer-kolumn h3,
+.footer-rubrik {
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
@@ -606,4 +597,186 @@ footer a:hover {
 .footer-botten p {
     font-size: 0.9rem;
     margin-bottom: 0;
+}
+
+.boka,
+.kontakt-knapp,
+form button,
+.omdome-knapp,
+#bokningar .bokning button {
+    min-height: 2.75rem;
+}
+
+.boka,
+.kontakt-knapp,
+form button,
+.omdome-knapp,
+#bokningar .bokning button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:focus-visible {
+    outline: 3px solid #e0a800;
+    outline-offset: 2px;
+}
+
+/* Responsivitet */
+
+@media (max-width: 900px) {
+    .hem {
+        min-height: 36rem;
+        padding: 3rem 2rem;
+    }
+
+    .hem br {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 6.5rem 1rem 1rem;
+    }
+
+    :root {
+        --meny-avstand: 6rem;
+    }
+
+    nav {
+        height: 5rem;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0 0.75rem;
+    }
+
+    nav .logo {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    nav .logo img {
+        height: 2rem;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    /* Logotypen länkar redan till startsidan */
+    nav a.underline[href="#top"] {
+        display: none;
+    }
+
+    /* Större träffyta på länkarna utan att menyn blir högre */
+    nav a.underline {
+        display: flex;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: 0 0.15rem;
+    }
+
+    nav a.underline::after {
+        bottom: 0.6rem;
+    }
+
+    .boka {
+        padding: 0 0.9rem;
+        min-height: 2.75rem;
+        font-size: 0.85rem;
+        font-weight: bold;
+        border-radius: 0.75rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .hem {
+        min-height: 0;
+        padding: 2rem 1.25rem 5rem;
+        border-radius: 1.25rem;
+    }
+
+    .hem h1 {
+        font-size: 2rem;
+    }
+
+    .kontakt-knapp {
+        display: flex;
+        width: 100%;
+        min-height: 3rem;
+        padding: 0 1.5rem;
+        margin-top: 1rem;
+        border-radius: 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .intro {
+        margin-top: -2rem;
+        padding: 1.25rem 1rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        padding-top: 4rem;
+        gap: 1.5rem;
+    }
+
+    .tjanst {
+        height: auto;
+        min-height: 0;
+    }
+
+    .tjanst img {
+        width: 100%;
+        max-width: 16rem;
+        height: 10rem;
+        object-fit: cover;
+    }
+
+    .om-sektion,
+    #kontakt {
+        padding: 2rem 1.25rem;
+        border-radius: 1.25rem;
+    }
+
+    form {
+        padding: 1.25rem 1rem;
+    }
+
+    form input {
+        font-size: 1rem;
+    }
+
+    #bokningar .bokning {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .omdome {
+        padding: 1.5rem 1rem;
+    }
+
+    .omdome p {
+        font-size: 1.05rem;
+    }
+
+    footer {
+        padding: 2rem 1rem 1rem;
+    }
+
+    .footer-topp {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 380px) {
+    nav a.underline[href="#om"] {
+        display: none;
+    }
 }
