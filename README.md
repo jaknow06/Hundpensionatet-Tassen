@@ -49,3 +49,7 @@ Bokningslistan ritas med forEach. För varje bokning skapar jag ett li-element, 
 ## State-hantering
 
 Bokningarna ändras bara via lista.laggTill() och lista.taBort(). Båda uppdaterar arrayen och sparar i localStorage. Efter det anropas ritaBokningar(), som ritar om listan från arrayen. DOM:en är alltså aldrig sanningen, utan arrayen är det.
+
+## AI
+
+Jag använde mig främst av ai för att skapa paragraferna och loggan till sidan.
