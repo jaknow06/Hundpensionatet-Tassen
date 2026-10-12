@@ -27,7 +27,7 @@ hundpensionatet-tassen/
 
 ## Reflektion
 
-Svåraste med uppgiften var att skapa bokningsystemet då jag hade inte gjort något liknande förut men jag tror att jag lyckades lösa det på ett bra sätt som funkar effektivt. Det som jag lärde mig var att använda mig av flera olika JS funktioner och att skapa klasser.
+Svåraste med uppgiften var att skapa bokningssystemet, speciellt att rita nya bokningar var lite klurigt och att få listan att ritas om och ändras när man la till eller tog bort en bokning. När jag var på den delen tittade jag på tidigare kod i genomgångarna och uppgifterna samt MDN för att få till bokningssystemet. Det jag också lärde mig var hur man skapar och hanterar klasser då jag använde mig av en klass för att skapa bokningslistan som sköter lagringen av hur bokningarna sparas i webbläsaren via localStorage.
 
 ## En bugg jag fastnade på
 
@@ -35,8 +35,7 @@ När jag byggde klockan visade tiden utan nolla framför ensiffriga värden, så
 
 ## Scope och "this"
 
-I klassen Bokningslista använder metoderna this.bokningar och this.nyckel this pekar på objektet som skapades med `
-new Bokningslista(...), så alla metoder delar samma lista. I taBort(id) använder jag filter med en arrow function, "b => b.id !== id". Arrow-funktionen når parametern id från metoden runt omkring. I ritaBokningar() skapar jag en avboka-knapp i varje varv av forEach med "() => taBortBokning(b.id)". Varje varv har sin egen "b", och arrow-funktionen kommer ihåg just den bokningens "b" även efter att loopen är klar. Därför tar knappen bort rätt rad.
+I klassen Bokningslista pekar `this` på objektet som skapades med `new Bokningslista(...)`, så alla metoder delar samma `this.bokningar` och `this.nyckel`. I `taBort(id)` använder jag `filter` med arrow-funktionen `b => b.id !== id`, som når parametern `id` från metoden runt omkring. I `ritaBokningar()` skapar jag en avboka-knapp i varje varv av `forEach` med `() => taBortBokning(b.id)`. Varje varv har sin egen `b`, och arrow-funktionen kommer ihåg just den bokningens `b` även efter att loopen är klar. Därför tar knappen bort rätt rad.
 
 ## Varför Grid och Flexbox
 
@@ -52,4 +51,4 @@ Bokningarna ändras bara via lista.laggTill() och lista.taBort(). Båda uppdater
 
 ## AI
 
-Jag använde mig främst av ai för att skapa paragraferna och loggan till sidan.
+Jag använde mig främst av ai för att skapa paragraferna och loggan till sidan men även små kodstycken där jag tyckte ai gjorde det mer kompakt än mig. Jag har gått igenom koden och förstår samt kan förklara hur den fungerar.
